@@ -37,6 +37,8 @@ void Player::handleInput(Input in)
 	case Input::Action::UP:
 		//std::cout << "Player Up" << std::endl;
 		m_state.jumping();
+		m_state.falling();
+		m_state.landing();
 		break;
 	case Input::Action::LEFT:
 		//std::cout << "Player Left" << std::endl;
