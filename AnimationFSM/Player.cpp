@@ -46,6 +46,11 @@ void Player::handleInput(Input in)
 		//std::cout << "Player Idling" << std::endl;
 		m_state.walking();
 		break;
+	case Input::Action::DOWN:
+		//std::cout << "Player Idling" << std::endl;
+		m_state.falling();
+		m_state.landing();
+		break;
 	default:
 		break;
 	}

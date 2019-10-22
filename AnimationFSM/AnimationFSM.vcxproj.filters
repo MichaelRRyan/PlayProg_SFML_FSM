@@ -110,11 +110,11 @@
     <ClCompile Include="Falling.cpp">
       <Filter>Source Files\FSM</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files\FSM</Filter>
-    </ClCompile>
     <ClCompile Include="Landing.cpp">
       <Filter>Source Files\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
