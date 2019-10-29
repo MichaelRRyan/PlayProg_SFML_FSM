@@ -6,9 +6,13 @@
 class Landing : public State
 {
 public:
-	Landing() {};
+	Landing();
 	~Landing() {};
+	void update(PlayerFSM* a);
 	void idle(PlayerFSM *a);
+
+private:
+	sf::Clock m_clock;
 };
 
 #endif // !LANDING_H

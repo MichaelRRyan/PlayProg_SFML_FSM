@@ -4,6 +4,29 @@
 
 #include <string>
 
+Jumping::Jumping()
+{
+	m_clock.restart();
+}
+
+void Jumping::handleInput(PlayerFSM* a)
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		climbing(a);
+	}
+}
+
+void Jumping::update(PlayerFSM* a)
+{
+	if (m_clock.getElapsedTime().asSeconds() > 2.0f) // Check if two seconds has passed since started jumping
+	{
+		falling(a);
+	}
+
+	handleInput(a);
+}
+
 void Jumping::falling(PlayerFSM* a)
 {
 	std::cout << "Jumping -> Falling" << std::endl;

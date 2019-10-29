@@ -23,12 +23,14 @@ public:
 	void addFrame(IntRect&);
 	const int getCurrentFrame();
 	void update();
+	void setAnimationIndex(int t_index);
 	
 private:
 	Clock m_clock;
 	Time m_time;
 	vector<IntRect> m_frames;
 	int m_current_frame;
+	int m_animationIndex;
 };
 
 #endif // !ANIMATED_SPRITE_H

@@ -6,8 +6,29 @@
 
 #include <string>
 
-void Idle::handleInput() {}
-void Idle::update() {}
+void Idle::handleInput(PlayerFSM* a)
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		jumping(a);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		climbing(a);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		walking(a);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		falling(a);
+	}
+}
+void Idle::update(PlayerFSM* a)
+{
+	handleInput(a);
+}
 
 void Idle::jumping(PlayerFSM* a)
 {

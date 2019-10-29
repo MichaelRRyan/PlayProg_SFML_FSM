@@ -20,6 +20,7 @@ public:
 	State* getCurrent();
 	State* getPrevious();
 	
+	void update();
 	void idle();
 	void jumping();
 	void climbing();

@@ -6,9 +6,13 @@
 class Falling : public State
 {
 public:
-	Falling() {};
+	Falling();
 	~Falling() {};
+	void update(PlayerFSM* a);
 	void landing(PlayerFSM* a);
+
+private:
+	sf::Clock m_clock;
 };
 
 #endif // !FALLING_H

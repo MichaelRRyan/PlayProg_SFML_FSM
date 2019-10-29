@@ -14,13 +14,15 @@ int main()
 
 	// Load a sprite to display
 	sf::Texture texture;
-	if (!texture.loadFromFile("assets\\grid.png")) {
+	if (!texture.loadFromFile("assets\\sprites.png")) {
 		DEBUG_MSG("Failed to load file");
 		return EXIT_FAILURE;
 	}
 
 	// Setup Players Default Animated Sprite
 	AnimatedSprite animated_sprite(texture);
+
+	// Idle
 	animated_sprite.addFrame(sf::IntRect(3, 3, 84, 84));
 	animated_sprite.addFrame(sf::IntRect(88, 3, 84, 84));
 	animated_sprite.addFrame(sf::IntRect(173, 3, 84, 84));
@@ -28,9 +30,33 @@ int main()
 	animated_sprite.addFrame(sf::IntRect(343, 3, 84, 84));
 	animated_sprite.addFrame(sf::IntRect(428, 3, 84, 84));
 
+	// Jumping
+	animated_sprite.addFrame(sf::IntRect(3, 88, 84, 84));
+	animated_sprite.addFrame(sf::IntRect(88, 88, 84, 84));
+	animated_sprite.addFrame(sf::IntRect(173, 88, 84, 84));
+	animated_sprite.addFrame(sf::IntRect(258, 88, 84, 84));
+	animated_sprite.addFrame(sf::IntRect(343, 88, 84, 84));
+	animated_sprite.addFrame(sf::IntRect(428, 88, 84, 84));
+
+	// Falling
+	animated_sprite.addFrame(sf::IntRect(3, 173, 84, 84));
+	animated_sprite.addFrame(sf::IntRect(88, 173, 84, 84));
+	animated_sprite.addFrame(sf::IntRect(173, 173, 84, 84));
+	animated_sprite.addFrame(sf::IntRect(258, 173, 84, 84));
+	animated_sprite.addFrame(sf::IntRect(343, 173, 84, 84));
+	animated_sprite.addFrame(sf::IntRect(428, 173, 84, 84));
+
+	// Landing
+	animated_sprite.addFrame(sf::IntRect(3, 258, 84, 84));
+	animated_sprite.addFrame(sf::IntRect(88, 258, 84, 84));
+	animated_sprite.addFrame(sf::IntRect(173, 258, 84, 84));
+	animated_sprite.addFrame(sf::IntRect(258, 258, 84, 84));
+	animated_sprite.addFrame(sf::IntRect(343, 258, 84, 84));
+	animated_sprite.addFrame(sf::IntRect(428, 258, 84, 84));
+
 	// Setup the Player
 	Player player(animated_sprite);
-	Input input;
+	//Input input;
 	
 	// Start the game loop
 	while (window.isOpen())
@@ -45,7 +71,7 @@ int main()
 				// Close window : exit
 				window.close();
 				break;
-			case sf::Event::KeyPressed:
+			/*case sf::Event::KeyPressed:
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 				{
 					input.setCurrent(Input::Action::LEFT);
@@ -65,12 +91,12 @@ int main()
 				break;
 			default:
 				input.setCurrent(Input::Action::IDLE);
-				break;
+				break;*/
 			}
 		}
 
 		// Handle input to Player
-		player.handleInput(input);
+		player.handleInput();
 
 		// Update the Player
 		player.update();

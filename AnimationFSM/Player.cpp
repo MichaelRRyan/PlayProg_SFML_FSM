@@ -24,38 +24,40 @@ AnimatedSprite& Player::getAnimatedSprite()
 	return m_animated_sprite;
 }
 
-void Player::handleInput(Input in)
+void Player::handleInput()
 {
 	DEBUG_MSG("Handle Input");
 
-	switch (in.getCurrent())
-	{
-	case Input::Action::IDLE:
-		//std::cout << "Player Idling" << std::endl;
-		m_state.idle();
-		break;
-	case Input::Action::UP:
-		//std::cout << "Player Up" << std::endl;
-		m_state.jumping();
-		m_state.falling();
-		m_state.landing();
-		break;
-	case Input::Action::LEFT:
-		//std::cout << "Player Left" << std::endl;
-		m_state.climbing();
-		break;
-	case Input::Action::RIGHT:
-		//std::cout << "Player Idling" << std::endl;
-		m_state.walking();
-		break;
-	case Input::Action::DOWN:
-		//std::cout << "Player Idling" << std::endl;
-		m_state.falling();
-		m_state.landing();
-		break;
-	default:
-		break;
-	}
+	m_state.update();
+
+	//switch (in.getCurrent())
+	//{
+	//case Input::Action::IDLE:
+	//	//std::cout << "Player Idling" << std::endl;
+	//	m_state.idle();
+	//	break;
+	//case Input::Action::UP:
+	//	//std::cout << "Player Up" << std::endl;
+	//	m_state.jumping();
+	//	m_state.falling();
+	//	m_state.landing();
+	//	break;
+	//case Input::Action::LEFT:
+	//	//std::cout << "Player Left" << std::endl;
+	//	m_state.climbing();
+	//	break;
+	//case Input::Action::RIGHT:
+	//	//std::cout << "Player Idling" << std::endl;
+	//	m_state.walking();
+	//	break;
+	//case Input::Action::DOWN:
+	//	//std::cout << "Player Idling" << std::endl;
+	//	m_state.falling();
+	//	m_state.landing();
+	//	break;
+	//default:
+	//	break;
+	//}
 }
 
 void Player::update()

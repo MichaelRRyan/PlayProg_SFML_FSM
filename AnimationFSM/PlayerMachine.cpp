@@ -28,6 +28,11 @@ State* PlayerFSM::getPrevious()
 	return m_previous;
 }
 
+void PlayerFSM::update()
+{
+	m_current->update(this);
+}
+
 void PlayerFSM::idle()
 {
 	m_current->idle(this);

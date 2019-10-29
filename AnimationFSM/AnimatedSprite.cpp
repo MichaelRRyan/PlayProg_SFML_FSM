@@ -5,9 +5,21 @@ AnimatedSprite::AnimatedSprite()
 	m_current_frame = 0;
 }
 
-AnimatedSprite::AnimatedSprite(const sf::Texture& t) : Sprite(t), m_current_frame(0), m_time(seconds(0.5f)) {}
+AnimatedSprite::AnimatedSprite(const sf::Texture& t) :
+	Sprite(t),
+	m_animationIndex(0),
+	m_current_frame(0),
+	m_time(seconds(0.16f))
+{
+}
 
-AnimatedSprite::AnimatedSprite(const sf::Texture& t, const sf::IntRect& rect) : Sprite(t), m_current_frame(0), m_time(seconds(0.5f)) {
+AnimatedSprite::AnimatedSprite(const sf::Texture& t, const sf::IntRect& rect) :
+	Sprite(t),
+	m_animationIndex(0),
+	m_current_frame(0),
+	m_time(seconds(0.5f))
+	
+{
 	m_frames.push_back(rect);
 }
 
@@ -39,14 +51,20 @@ const int AnimatedSprite::getCurrentFrame() {
 
 void AnimatedSprite::update(){
 	if (m_clock.getElapsedTime() > m_time) {
-		if (m_frames.size() > m_current_frame + 1)
+		if (m_animationIndex * 6 + 6 > m_current_frame + 1)
 		{
 			m_current_frame++;
 		}
 		else {
-			m_current_frame = 0;
+			m_current_frame = m_animationIndex * 6;
 		}
 		m_clock.restart();
 	}
+}
+
+void AnimatedSprite::setAnimationIndex(int t_index)
+{
+	m_animationIndex = t_index;
+	m_current_frame = m_animationIndex * 6;
 }
 

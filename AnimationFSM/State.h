@@ -1,6 +1,7 @@
 #ifndef STATE_H
 #define STATE_H
 
+#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <typeinfo>
 
@@ -13,7 +14,7 @@ class State
 public:
 	virtual void handleInput() {}
 
-	virtual void update() {}
+	virtual void update(PlayerFSM* a) {}
 
 	virtual void idle(PlayerFSM* a)
 	{
