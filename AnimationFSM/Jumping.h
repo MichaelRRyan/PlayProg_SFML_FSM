@@ -8,8 +8,10 @@ class Jumping : public State
 public:
 	Jumping();
 	~Jumping() {};
-	void handleInput(PlayerFSM* a);
-	void update(PlayerFSM* a);
+
+	void handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite);
+	void update(PlayerFSM* a, AnimatedSprite* t_animatedSprite);
+
 	void falling(PlayerFSM* a);
 	void climbing(PlayerFSM* a);
 private:

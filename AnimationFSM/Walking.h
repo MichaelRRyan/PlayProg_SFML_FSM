@@ -8,6 +8,10 @@ class Walking : public State
 public:
 	Walking() {};
 	~Walking() {};
+
+	void handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite);
+	void update(PlayerFSM* a, AnimatedSprite* t_animatedSprite);
+
 	void jumping(PlayerFSM* a);
 	void idle(PlayerFSM* a);
 	void falling(PlayerFSM* a);

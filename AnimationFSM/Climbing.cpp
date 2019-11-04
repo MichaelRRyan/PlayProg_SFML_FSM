@@ -5,6 +5,29 @@
 
 #include <string>
 
+void Climbing::handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite)
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		t_animatedSprite->changeAnimation(Animation::Jumping);
+		jumping(a);
+	}
+	else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		t_animatedSprite->changeAnimation(Animation::Falling);
+		falling(a);
+	}
+}
+
+void Climbing::update(PlayerFSM* a, AnimatedSprite* t_animatedSprite)
+{
+	if (m_clock.getElapsedTime().asSeconds() > 2.0f)
+	{
+		t_animatedSprite->changeAnimation(Animation::Idle);
+		idle(a);
+	}
+}
+
 void Climbing::idle(PlayerFSM* a)
 {
 	std::cout << "Climbing -> Idle" << std::endl;

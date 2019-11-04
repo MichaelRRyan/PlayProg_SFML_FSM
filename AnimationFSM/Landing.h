@@ -8,7 +8,9 @@ class Landing : public State
 public:
 	Landing();
 	~Landing() {};
-	void update(PlayerFSM* a);
+
+	void update(PlayerFSM* a, AnimatedSprite* t_animatedSprite);
+
 	void idle(PlayerFSM *a);
 
 private:

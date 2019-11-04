@@ -28,7 +28,8 @@ void Player::handleInput()
 {
 	DEBUG_MSG("Handle Input");
 
-	m_state.update();
+	m_state.handleInput(&m_animated_sprite);
+	m_state.update(&m_animated_sprite);
 
 	//switch (in.getCurrent())
 	//{

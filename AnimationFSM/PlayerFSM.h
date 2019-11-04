@@ -1,6 +1,8 @@
 #ifndef PLAYER_FSM_H
 #define PLAYER_FSM_H
 
+#include <AnimatedSprite.h>
+
 class PlayerFSM
 {
 
@@ -20,7 +22,8 @@ public:
 	State* getCurrent();
 	State* getPrevious();
 	
-	void update();
+	void handleInput(AnimatedSprite *t_animatedSprite);
+	void update(AnimatedSprite* t_animatedSprite);
 	void idle();
 	void jumping();
 	void climbing();

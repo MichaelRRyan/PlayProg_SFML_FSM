@@ -8,8 +8,10 @@ class Idle : public State
 public:
 	Idle() {};
 	~Idle() {};
-	void handleInput(PlayerFSM* a);
-	void update(PlayerFSM* a);
+
+	void handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite);
+	void update(PlayerFSM* a, AnimatedSprite* t_animatedSprite);
+
 	void jumping(PlayerFSM* a);
 	void climbing(PlayerFSM* a);
 	void walking(PlayerFSM* a);

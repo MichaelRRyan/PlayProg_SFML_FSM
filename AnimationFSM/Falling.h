@@ -8,7 +8,9 @@ class Falling : public State
 public:
 	Falling();
 	~Falling() {};
-	void update(PlayerFSM* a);
+
+	void update(PlayerFSM* a, AnimatedSprite* t_animatedSprite);
+
 	void landing(PlayerFSM* a);
 
 private:

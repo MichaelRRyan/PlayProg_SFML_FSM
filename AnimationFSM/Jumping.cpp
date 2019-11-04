@@ -9,22 +9,22 @@ Jumping::Jumping()
 	m_clock.restart();
 }
 
-void Jumping::handleInput(PlayerFSM* a)
+void Jumping::handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
+		t_animatedSprite->changeAnimation(Animation::Climbing);
 		climbing(a);
 	}
 }
 
-void Jumping::update(PlayerFSM* a)
+void Jumping::update(PlayerFSM* a, AnimatedSprite* t_animatedSprite)
 {
-	if (m_clock.getElapsedTime().asSeconds() > 2.0f) // Check if two seconds has passed since started jumping
+	if (m_clock.getElapsedTime().asSeconds() > 1.0f) // Check if two seconds has passed since started jumping
 	{
+		t_animatedSprite->changeAnimation(Animation::Falling);
 		falling(a);
 	}
-
-	handleInput(a);
 }
 
 void Jumping::falling(PlayerFSM* a)

@@ -28,9 +28,14 @@ State* PlayerFSM::getPrevious()
 	return m_previous;
 }
 
-void PlayerFSM::update()
+void PlayerFSM::handleInput(AnimatedSprite *t_animatedSprite)
 {
-	m_current->update(this);
+	m_current->handleInput(this, t_animatedSprite);
+}
+
+void PlayerFSM::update(AnimatedSprite* t_animatedSprite)
+{
+	m_current->update(this, t_animatedSprite);
 }
 
 void PlayerFSM::idle()
