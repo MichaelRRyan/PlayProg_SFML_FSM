@@ -11,7 +11,7 @@ Falling::Falling()
 
 void Falling::update(PlayerFSM* a, AnimatedSprite* t_animatedSprite)
 {
-	if (m_clock.getElapsedTime().asSeconds() > 2.0f) // Check if two seconds have passed since started jumping
+	if (m_clock.getElapsedTime().asSeconds() > 1.0f) // Check if two seconds have passed since started jumping
 	{
 		t_animatedSprite->changeAnimation(Animation::Landing);
 		landing(a);
@@ -22,5 +22,6 @@ void Falling::landing(PlayerFSM* a)
 {
 	std::cout << "Falling -> Landing" << std::endl;
 	a->setCurrent(new Landing());
+	a->setCurrentName("landing");
 	delete this;
 }

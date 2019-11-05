@@ -7,12 +7,14 @@ Player::Player()
 {
 	m_state.setCurrent(new Idle());
 	m_state.setPrevious(new Idle());
+	m_animated_sprite.setOrigin(41.0f, 0.0);
 }
 
 Player::Player(const AnimatedSprite& s) : m_animated_sprite(s)
 {
 	m_state.setCurrent(new Idle());
 	m_state.setPrevious(new Idle());
+	m_animated_sprite.setOrigin(41.0f, 0.0);
 }
 
 Player::~Player() {}
@@ -24,45 +26,58 @@ AnimatedSprite& Player::getAnimatedSprite()
 	return m_animated_sprite;
 }
 
-void Player::handleInput()
+void Player::handleInput(Input t_input)
 {
 	DEBUG_MSG("Handle Input");
 
 	m_state.handleInput(&m_animated_sprite);
-	m_state.update(&m_animated_sprite);
 
-	//switch (in.getCurrent())
-	//{
-	//case Input::Action::IDLE:
-	//	//std::cout << "Player Idling" << std::endl;
-	//	m_state.idle();
-	//	break;
-	//case Input::Action::UP:
-	//	//std::cout << "Player Up" << std::endl;
-	//	m_state.jumping();
-	//	m_state.falling();
-	//	m_state.landing();
-	//	break;
-	//case Input::Action::LEFT:
-	//	//std::cout << "Player Left" << std::endl;
-	//	m_state.climbing();
-	//	break;
-	//case Input::Action::RIGHT:
-	//	//std::cout << "Player Idling" << std::endl;
-	//	m_state.walking();
-	//	break;
-	//case Input::Action::DOWN:
-	//	//std::cout << "Player Idling" << std::endl;
-	//	m_state.falling();
-	//	m_state.landing();
-	//	break;
-	//default:
-	//	break;
-	//}
+	if (m_clock.getElapsedTime().asSeconds() > 1.0f / 60.0f)
+	{
+		if (m_state.getCurrentName() == "walking")
+		{
+			if (m_animated_sprite.getScale().x > 0)
+			{
+				m_animated_sprite.move(3.0f, 0.0f);
+			}
+			else
+			{
+				m_animated_sprite.move(-3.0f, 0.0f);
+			}
+			
+		}
+
+		if (m_state.getCurrentName() == "falling")
+		{
+			m_animated_sprite.move(0.0f, 5.0f);
+		}
+
+		if (m_state.getCurrentName() == "jumping")
+		{
+			m_animated_sprite.move(0.0f, -5.0f);
+		}
+
+		if (m_state.getCurrentName() == "climbing")
+		{
+			m_animated_sprite.move(0.0f, -3.0f);
+		}
+
+		m_clock.restart();
+	}
 }
 
 void Player::update()
 {
-	//std::cout << "Handle Update" << std::endl;
 	m_animated_sprite.update();
+	m_state.update(&m_animated_sprite);
+}
+
+void Player::setPosition(sf::Vector2f t_position)
+{
+	m_animated_sprite.setPosition(t_position);
+}
+
+sf::Vector2f Player::getPositon()
+{
+	return m_animated_sprite.getPosition();
 }

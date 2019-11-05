@@ -2,6 +2,7 @@
 #define PLAYER_FSM_H
 
 #include <AnimatedSprite.h>
+#include <string>
 
 class PlayerFSM
 {
@@ -14,6 +15,8 @@ private:
 	class State* m_current; // note order of m_current is 
 							// prior to setCurrent
 	class State* m_previous;
+
+	std::string m_currentName;
 public:
 	PlayerFSM();
 	~PlayerFSM();
@@ -21,6 +24,8 @@ public:
 	void setPrevious(State* s);
 	State* getCurrent();
 	State* getPrevious();
+	std::string getCurrentName() { return m_currentName; }
+	void setCurrentName(const std::string t_name) { m_currentName = t_name; };
 	
 	void handleInput(AnimatedSprite *t_animatedSprite);
 	void update(AnimatedSprite* t_animatedSprite);

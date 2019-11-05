@@ -21,5 +21,6 @@ void Landing::idle(PlayerFSM* a)
 {
 	std::cout << "Landing -> Idle" << std::endl;
 	a->setCurrent(new Idle());
+	a->setCurrentName("idle");
 	delete this;
 }

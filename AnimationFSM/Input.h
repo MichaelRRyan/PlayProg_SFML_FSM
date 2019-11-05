@@ -6,19 +6,12 @@ public:
 	Input();
 	~Input();
 
-	enum Action
-	{
-		IDLE,
-		UP,
-		LEFT,
-		RIGHT,
-		DOWN
-	};
+	void setAllFalse();
 
-	void setCurrent(Action);
-	Action getCurrent();
-
-private:
-	Action m_current;
+	bool m_up;
+	bool m_down;
+	bool m_left;
+	bool m_leftPressed;
+	bool m_right;
 };
 #endif

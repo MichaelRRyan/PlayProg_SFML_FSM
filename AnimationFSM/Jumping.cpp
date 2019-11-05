@@ -11,7 +11,7 @@ Jumping::Jumping()
 
 void Jumping::handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		t_animatedSprite->changeAnimation(Animation::Climbing);
 		climbing(a);
@@ -31,6 +31,7 @@ void Jumping::falling(PlayerFSM* a)
 {
 	std::cout << "Jumping -> Falling" << std::endl;
 	a->setCurrent(new Falling());
+	a->setCurrentName("falling");
 	delete this;
 }
 
@@ -38,5 +39,6 @@ void Jumping::climbing(PlayerFSM* a)
 {
 	std::cout << "Jumping -> Climbing" << std::endl;
 	a->setCurrent(new Climbing());
+	a->setCurrentName("climbing");
 	delete this;
 }
