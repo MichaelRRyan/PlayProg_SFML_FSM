@@ -12,7 +12,7 @@
 class State
 {
 public:
-	virtual void handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite) {}
+	virtual void handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite, Input t_input) {}
 
 	virtual void update(PlayerFSM* a, AnimatedSprite* t_animatedSprite) {}
 

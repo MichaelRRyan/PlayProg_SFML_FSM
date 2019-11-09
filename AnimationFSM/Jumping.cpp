@@ -9,9 +9,9 @@ Jumping::Jumping()
 	m_clock.restart();
 }
 
-void Jumping::handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite)
+void Jumping::handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite, Input t_input)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	if (t_input.m_upPressed) // If the up key is pressed move to climbing state
 	{
 		t_animatedSprite->changeAnimation(Animation::Climbing);
 		climbing(a);

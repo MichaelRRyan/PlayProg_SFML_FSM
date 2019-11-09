@@ -11,7 +11,7 @@ Falling::Falling()
 
 void Falling::update(PlayerFSM* a, AnimatedSprite* t_animatedSprite)
 {
-	if (m_clock.getElapsedTime().asSeconds() > 1.0f) // Check if two seconds have passed since started jumping
+	if (m_clock.getElapsedTime().asSeconds() > 1.0f) // Check if two seconds have passed since started falling
 	{
 		t_animatedSprite->changeAnimation(Animation::Landing);
 		landing(a);

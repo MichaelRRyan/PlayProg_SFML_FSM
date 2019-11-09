@@ -36,6 +36,8 @@ int main()
 	Input input;
 
 	player.setPosition({ 0.0f, 500.0f });
+
+	bool upButtonDown = false; // Used to check if the button was actually *just* pressed
 	
 	// Start the game loop
 	while (window.isOpen())
@@ -53,15 +55,29 @@ int main()
 				window.close();
 				break;
 			case sf::Event::KeyPressed:
-				if (sf::Keyboard::Left == event.key.code)
+				if (sf::Keyboard::Up == event.key.code)
 				{
-					input.m_leftPressed = true;
+					if (!upButtonDown) // Check if the button was not already down
+					{
+						input.m_upPressed = true; // Sets the up button to true
+						upButtonDown = true; // Sets the up button to down position
+					}
+				}
+				if (sf::Keyboard::Space == event.key.code)
+				{
+					input.m_spacePressed = true;
+				}
+				break;
+			case sf::Event::KeyReleased:
+				if (sf::Keyboard::Up == event.key.code)
+				{
+					upButtonDown = false;
 				}
 				break;
 			}
 		}
 
-		// Get input
+		// Gets the continuous keypress updates
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
 			input.m_left = true;
@@ -84,24 +100,6 @@ int main()
 
 		// Update the Player
 		player.update();
-
-		if (player.getPositon().x > 800)
-		{
-			player.setPosition({ -82.0f,player.getPositon().y });
-		}
-		else if (player.getPositon().x < -82)
-		{
-			player.setPosition({ 800,player.getPositon().y });
-		}
-
-		if (player.getPositon().y > 600 - 82)
-		{
-			player.setPosition({ player.getPositon().x, 600 - 82 });
-		}
-		else if (player.getPositon().y < 0)
-		{
-			player.setPosition({ player.getPositon().x, 0 });
-		}
 
 		// Clear screen
 		window.clear(sf::Color::White);

@@ -9,7 +9,7 @@ public:
 	Climbing() {};
 	~Climbing() {};
 
-	void handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite);
+	void handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite, Input t_input);
 	void update(PlayerFSM* a, AnimatedSprite* t_animatedSprite);
 
 	void idle(PlayerFSM* a);

@@ -5,14 +5,15 @@
 
 #include <string>
 
-void Climbing::handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite)
+void Climbing::handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite, Input t_input)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	// Check the input and move to the appropriate state
+	if (t_input.m_spacePressed)
 	{
 		t_animatedSprite->changeAnimation(Animation::Jumping);
 		jumping(a);
 	}
-	else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	else if (!t_input.m_up) // if no longer holding climbing button, just fall
 	{
 		t_animatedSprite->changeAnimation(Animation::Falling);
 		falling(a);
@@ -21,7 +22,7 @@ void Climbing::handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite)
 
 void Climbing::update(PlayerFSM* a, AnimatedSprite* t_animatedSprite)
 {
-	if (m_clock.getElapsedTime().asSeconds() > 1.0f)
+	if (m_clock.getElapsedTime().asSeconds() > 1.0f) // Check if the animation time has elapsed, change to new animation
 	{
 		t_animatedSprite->changeAnimation(Animation::Idle);
 		idle(a);

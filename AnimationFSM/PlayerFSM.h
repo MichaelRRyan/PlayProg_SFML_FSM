@@ -3,6 +3,7 @@
 
 #include <AnimatedSprite.h>
 #include <string>
+#include <Input.h>
 
 class PlayerFSM
 {
@@ -27,7 +28,7 @@ public:
 	std::string getCurrentName() { return m_currentName; }
 	void setCurrentName(const std::string t_name) { m_currentName = t_name; };
 	
-	void handleInput(AnimatedSprite *t_animatedSprite);
+	void handleInput(AnimatedSprite *t_animatedSprite, Input t_input);
 	void update(AnimatedSprite* t_animatedSprite);
 	void idle();
 	void jumping();

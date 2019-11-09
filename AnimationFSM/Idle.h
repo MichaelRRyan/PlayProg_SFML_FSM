@@ -9,7 +9,7 @@ public:
 	Idle() {};
 	~Idle() {};
 
-	void handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite);
+	void handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite, Input t_input);
 	void update(PlayerFSM* a, AnimatedSprite* t_animatedSprite);
 
 	void jumping(PlayerFSM* a);

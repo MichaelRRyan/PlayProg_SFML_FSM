@@ -3,20 +3,21 @@
 #include "Idle.h"
 #include "Falling.h"
 
-void Walking::handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite)
+void Walking::handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite, Input t_input)
 {
-	if ((t_animatedSprite->getScale().x > 0 && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		|| (t_animatedSprite->getScale().x < 0 && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left)))
+	// Check input
+	if ((t_animatedSprite->getScale().x > 0 && !t_input.m_right) // Check if moving right
+		|| (t_animatedSprite->getScale().x < 0 && !t_input.m_left)) // Check if moving left
 	{
-		t_animatedSprite->changeAnimation(Animation::Idle);
+		t_animatedSprite->changeAnimation(Animation::Idle); // If not moving anymore go back to idle
 		idle(a);
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	else if (t_input.m_spacePressed)
 	{
 		t_animatedSprite->changeAnimation(Animation::Jumping);
 		jumping(a);
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	else if (t_input.m_down)
 	{
 		t_animatedSprite->changeAnimation(Animation::Falling);
 		falling(a);

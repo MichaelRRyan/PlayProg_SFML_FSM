@@ -6,31 +6,32 @@
 
 #include <string>
 
-void Idle::handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite)
+void Idle::handleInput(PlayerFSM* a, AnimatedSprite* t_animatedSprite, Input t_input)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	// Check input, move to the corresponding state
+	if (t_input.m_spacePressed)
 	{
 		t_animatedSprite->changeAnimation(Animation::Jumping);
 		jumping(a);
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	else if (t_input.m_upPressed)
 	{
 		t_animatedSprite->changeAnimation(Animation::Climbing);
 		climbing(a);
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	else if (t_input.m_right)
 	{
 		t_animatedSprite->setScale(1.0f, 1.0f);
 		t_animatedSprite->changeAnimation(Animation::Walking);
 		walking(a);
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	else if (t_input.m_left)
 	{
 		t_animatedSprite->setScale(-1.0f, 1.0f);
 		t_animatedSprite->changeAnimation(Animation::Walking);
 		walking(a);
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	else if (t_input.m_down)
 	{
 		t_animatedSprite->changeAnimation(Animation::Falling);
 		falling(a);
